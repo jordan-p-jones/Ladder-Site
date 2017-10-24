@@ -4,12 +4,12 @@
     <title>Ladder - Join</title>
     <script>
     function matchPasswords(pw2Field){
-      if (document.getElementById("pwd2").value != document.getElementById("pwd1").value)
+      if (pw2Field.value != document.getElementById("pwd1").value)
       {
         alert("Given passwords do not match.");
         pw2Field.focus();
         pw2Field.select();
-	    return false;
+        return false;
       }
       else
       {
@@ -52,12 +52,12 @@
 	
 	<script>
     function validateEmail(){
-      if (!document.getElementById("email").value.includes('@'))
+      if (document.getElementById("email").value.search(/([a-z]|[0-9])+@([a-z]|[0-9])+/i) == -1)
       {
-        alert("Email requires an '@' symbol.");
+        alert("Email requires an '@' symbol separated by at least one letter or digit on either side.");
         document.getElementById("email").focus();
         document.getElementById("email").select();
-	    return false;
+        return false;
       }
       else
       {
@@ -69,7 +69,8 @@
     <script>
     function validateForm(){
       if (!(matchPasswords(document.getElementById("pwd2")) 
-          && validateTele(document.getElementById("tele"))))
+          && validateTele(document.getElementById("tele"))
+          && validateEmail()))
       {
         return false;
       }
@@ -86,7 +87,7 @@
     <h1 align=center>Register to join the ladder</h1>
     <p><hr></p>
     <h3>Please fill out all fields</h3>
-    <form name="registration_form" id="registration_form" action="dhansen.cs.georgefox.edu/~dhansen/echoForm.php" method="post" onsubmit="return validateForm();">
+    <form name="registration_form" id="registration_form" action="http://dhansen.cs.georgefox.edu/~dhansen/echoForm.php" method="post" onsubmit="return validateForm();">
       Your name:<br>
       <input type="text" name="name" id="name" required><br><br>
       Email:<br>
