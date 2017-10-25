@@ -4,114 +4,114 @@
     <title>
       Match Results Entry
     </title>
-	<script>
-    function validateScore(scoreField){
-      if (isNaN(scoreField.value) || scoreField.value < 0)
-      {
-        alert(scoreField.value + " is not a valid score.");
-        scoreField.focus();
-        scoreField.select();
-        return false;
-      }
-      else
-      {
-        return true;
-      }
-    }
-    </script>
-	
-	<script>
-    function validateGame(scoreField1, scoreField2){
-      if (validateScore(scoreField1) && validateScore(scoreField2))
-      {
-          if ((scoreField1.value != '' && scoreField2.value != '') && ((scoreField1.value < 15 && scoreField2.value < 15) || Math.abs(scoreField2.value - scoreField1.value) < 2))
-          {
-            var game;
-          
-            switch (scoreField1.id){
-              case 'me-game-1':
-                game = 'game 1';
-                break;
-              case 'me-game-2':
-                game = 'game 2';
-                break;
-              case 'me-game-3':
-                game = 'game 3';
-                break;
-              case 'me-game-4':
-                game = 'game 4';
-                break;
-              case 'me-game-5':
-                game = 'game 5';
-                break;
-            }
-      
-            alert("The scores given for " + game + " are invalid. The winner must reach 15 points and win by at least 2.");
-            scoreField2.focus();
-            scoreField2.select();
-            return false;
-          }
-          else
-          {
-            return true;
-          }
-      }
-      else
-      {
-        return false;
-      }
-    }
-    </script>
-	
-	<script>
-    function validateForm(){
-      if (!(validateGame(document.getElementById('me-game-1'), document.getElementById('opp-game-1'))
-          && validateGame(document.getElementById('me-game-2'), document.getElementById('opp-game-2'))
-          && validateGame(document.getElementById('me-game-3'), document.getElementById('opp-game-3'))
-          && validateGame(document.getElementById('me-game-4'), document.getElementById('opp-game-4'))
-          && validateGame(document.getElementById('me-game-5'), document.getElementById('opp-game-5'))))
-      {
-        return false;
-      }
-      else if ((document.getElementById('me-game-4').value != '' && document.getElementById('opp-game-4').value == '')
-            || (document.getElementById('me-game-4').value == '' && document.getElementById('opp-game-4').value != ''))
-      {
-        alert("Inconsistent data for game 4.");
-        return false;
-      }
-      else if ((document.getElementById('me-game-5').value != '' && document.getElementById('opp-game-5').value == '')
-            || (document.getElementById('me-game-5').value == '' && document.getElementById('opp-game-5').value != ''))
-      {
-        alert("Inconsistent data for game 5.");
-        return false;
-      }
-      else
-      {
-        // See if either player has won more than 3 matches, which is not allowed.
-        var p1Wins = 0;
-        var p2Wins = 0;
-        
-        for (var i = 1; i < 6; i++)
+    <script>
+      function validateScore(scoreField){
+        if (isNaN(scoreField.value) || scoreField.value < 0)
         {
-          if (document.getElementById('me-game-' + String(i)) > document.getElementById('opp-game-' + String(i)))
-          {
-            p1Wins++;
-          }
-          else
-          {
-            p2Wins++;
-          }
-        }        
-        
-        if (p1Wins > 3 || p2Wins > 3)
-        {
-          alert('It is not possible for a player to win more than three games in a match. Please correct this problem submit the scores again.');
+          alert(scoreField.value + " is not a valid score.");
+          scoreField.focus();
+          scoreField.select();
           return false;
         }
-        
-        return true;
+        else
+        {
+          return true;
+        }
       }
-    }
+    </script>
+	
+    <script>
+      function validateGame(scoreField1, scoreField2){
+        if (validateScore(scoreField1) && validateScore(scoreField2))
+        {
+            if ((scoreField1.value != '' && scoreField2.value != '') && ((scoreField1.value < 15 && scoreField2.value < 15) || Math.abs(scoreField2.value - scoreField1.value) < 2))
+            {
+              var game;
+            
+              switch (scoreField1.id){
+                case 'me-game-1':
+                  game = 'game 1';
+                  break;
+                case 'me-game-2':
+                  game = 'game 2';
+                  break;
+                case 'me-game-3':
+                  game = 'game 3';
+                  break;
+                case 'me-game-4':
+                  game = 'game 4';
+                  break;
+                case 'me-game-5':
+                  game = 'game 5';
+                  break;
+              }
+        
+              alert("The scores given for " + game + " are invalid. The winner must reach 15 points and win by at least 2.");
+              scoreField2.focus();
+              scoreField2.select();
+              return false;
+            }
+            else
+            {
+              return true;
+            }
+        }
+        else
+        {
+          return false;
+        }
+      }
+    </script>
+	
+    <script>
+      function validateForm(){
+        if (!(validateGame(document.getElementById('me-game-1'), document.getElementById('opp-game-1'))
+            && validateGame(document.getElementById('me-game-2'), document.getElementById('opp-game-2'))
+            && validateGame(document.getElementById('me-game-3'), document.getElementById('opp-game-3'))
+            && validateGame(document.getElementById('me-game-4'), document.getElementById('opp-game-4'))
+            && validateGame(document.getElementById('me-game-5'), document.getElementById('opp-game-5'))))
+        {
+          return false;
+        }
+        else if ((document.getElementById('me-game-4').value != '' && document.getElementById('opp-game-4').value == '')
+              || (document.getElementById('me-game-4').value == '' && document.getElementById('opp-game-4').value != ''))
+        {
+          alert("Inconsistent data for game 4.");
+          return false;
+        }
+        else if ((document.getElementById('me-game-5').value != '' && document.getElementById('opp-game-5').value == '')
+              || (document.getElementById('me-game-5').value == '' && document.getElementById('opp-game-5').value != ''))
+        {
+          alert("Inconsistent data for game 5.");
+          return false;
+        }
+        else
+        {
+          // See if either player has won more than 3 matches, which is not allowed.
+          var p1Wins = 0;
+          var p2Wins = 0;
+          
+          for (var i = 1; i < 6; i++)
+          {
+            if (document.getElementById('me-game-' + String(i)) > document.getElementById('opp-game-' + String(i)))
+            {
+              p1Wins++;
+            }
+            else
+            {
+              p2Wins++;
+            }
+          }        
+          
+          if (p1Wins > 3 || p2Wins > 3)
+          {
+            alert('It is not possible for a player to win more than three games in a match. Please correct this problem submit the scores again.');
+            return false;
+          }
+          
+          return true;
+        }
+      }
     </script>
   </head>
 

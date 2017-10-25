@@ -3,51 +3,31 @@
   <head>
     <title>Ladder - Join</title>
     <script>
-    function matchPasswords(pw2Field){
-      if (pw2Field.value != document.getElementById("pwd1").value)
-      {
-        alert("Given passwords do not match.");
-        pw2Field.focus();
-        pw2Field.select();
-        return false;
-      }
-      else
-      {
+      function matchPasswords(pw2Field){
+        if (pw2Field.value != document.getElementById("pwd1").value)
+        {
+          alert("Given passwords do not match.");
+          pw2Field.focus();
+          pw2Field.select();
+          return false;
+        }
         return true;
       }
-    }
     </script>
 
     <script>
-    function validateTele(teleField){
-      var valid = true;
-      telNum = teleField.value;
+      function validateTele(teleField){
+        telNum = teleField.value;
 
-      if (telNum.length != 10)
-      {
-        valid = false;
-      }
-
-      for (var i = 0; i < telNum.length && valid; i++)
-      {
-        if (isNaN(parseInt(telNum.charAt(i))))
+        if (telNum.search(/\(?\d\d\d\)?(\s|-)?\d\d\d(\s|-)?\d\d\d\d/) == -1)
         {
-          valid = false;
+          alert(telNum + " is not a valid phone number.");
+          teleField.focus();
+          teleField.select();
+          return false;
         }
-      }
-
-      if (!valid)
-      {
-        alert(teleField.value + " is not a valid phone number.");
-        teleField.focus();
-        teleField.select();
-        return false;
-      }
-      else
-      {
         return true;
       }
-    }
     </script>
 	
 	<script>
@@ -59,26 +39,20 @@
         document.getElementById("email").select();
         return false;
       }
-      else
-      {
-        return true;
-      }
+      return true;
     }
     </script>
 
     <script>
-    function validateForm(){
-      if (!(matchPasswords(document.getElementById("pwd2")) 
-          && validateTele(document.getElementById("tele"))
-          && validateEmail()))
-      {
-        return false;
-      }
-      else
-      {
+      function validateForm(){
+        if (!(matchPasswords(document.getElementById("pwd2")) 
+            && validateTele(document.getElementById("tele"))
+            && validateEmail()))
+        {
+          return false;
+        }
         return true;
       }
-    }
     </script>
     
   </head>
@@ -86,14 +60,14 @@
   <body>
     <h1 align=center>Register to join the ladder</h1>
     <p><hr></p>
-    <h3>Please fill out all fields</h3>
+    <h3>Please fill out all fields:</h3>
     <form name="registration_form" id="registration_form" action="http://dhansen.cs.georgefox.edu/~dhansen/echoForm.php" method="post" onsubmit="return validateForm();">
       Your name:<br>
       <input type="text" name="name" id="name" required><br><br>
       Email:<br>
       <input type="email" name="email" id="email" onChange="validateEmail();" required><br><br>
-      Phone number:<br>(enter only digits with no spaces, e.g. 1112222333)<br>
-      <input type="text" name="tele" id="tele" maxlength="10" onChange="validateTele(this);" required><br><br>
+      Phone number (include area code):<br>
+      <input type="text" name="tele" id="tele" maxlength="14" onChange="validateTele(this);" required><br><br>
       Username:<br>
       <input type="text" name="uname" id="uname" required><br><br>
       Password:<br>
