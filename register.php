@@ -11,7 +11,7 @@
     // Prepare an insert query
     $statement = $db->prepare("insert into player (name, email, rank, 
                                username, phone, password) 
-                               select :name, :email, max(rank)+1, :username, 
+                               select :name, :email, coalesce(max(rank)+1, 1), :username, 
                                :phone, :password from player");
 
     // Execute the query
