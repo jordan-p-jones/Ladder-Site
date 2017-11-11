@@ -30,17 +30,17 @@
       }
     </script>
 	
-	<script>
-    function validateEmail(){
-      if (document.getElementById("email").value.search(/([a-z]|[0-9])+@([a-z]|[0-9])+/i) == -1)
-      {
-        alert("Email requires an '@' symbol separated by at least one letter or digit on either side.");
-        document.getElementById("email").focus();
-        document.getElementById("email").select();
-        return false;
+    <script>
+      function validateEmail(){
+        if (document.getElementById("email").value.search(/([a-z]|[0-9])+@([a-z]|[0-9])+/i) == -1)
+        {
+          alert("Email requires an '@' symbol separated by at least one letter or digit on either side.");
+          document.getElementById("email").focus();
+          document.getElementById("email").select();
+          return false;
+        }
+        return true;
       }
-      return true;
-    }
     </script>
 
     <script>
@@ -61,7 +61,7 @@
     <h1 align=center>Register to join the ladder</h1>
     <p><hr></p>
     <h3>Please fill out all fields:</h3>
-    <form name="registration_form" id="registration_form" action="http://dhansen.cs.georgefox.edu/~dhansen/echoForm.php" method="post" onsubmit="return validateForm();">
+    <form name="registration_form" id="registration_form" action="register.php" method="post" onsubmit="return validateForm();">
       Your name:<br>
       <input type="text" name="name" id="name" required><br><br>
       Email:<br>
