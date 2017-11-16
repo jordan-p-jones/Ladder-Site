@@ -1,5 +1,5 @@
 <?php
-  include("dbConnection.php");
+  include("../dbConnection.php");
   
   // Query the given username and password and see if a row is returned.
   // If something is returned, go to the welcome page.
@@ -32,18 +32,18 @@
             var reactivate = confirm('This account has previously been deactivated. Would you like to re-join the ladder with this account?');
             if (reactivate)
             {
-              window.location.assign('reactivate.php');
+              window.location.assign('../reactivate.php');
             }
             else
             {
-              window.location.assign('index.html');
+              window.location.assign('../index.html');
             }
           </script>";
       }
       // Login normally.
       else
       {
-        header('Location: welcome.php');
+        header('Location: ../welcome.php');
       }
     }
   }
@@ -54,7 +54,7 @@
     echo "
       <script type='text/javascript'>
         alert('Username and password combination is incorrect.');
-        window.location.assign('index.html');
+        window.location.assign('../index.html');
       </script>";
   }
 

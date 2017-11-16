@@ -1,5 +1,5 @@
 <?php
-  include("dbConnection.php");
+  include("../dbConnection.php");
   
   // Sanitize phone number.
   $form_telephone = str_replace('-', '', $_POST["tele"]);
@@ -11,7 +11,7 @@
     // Prepare an insert query
     $statement = $db->prepare("insert into player (name, email, rank, 
                                username, phone, password) 
-                               select :name, :email, max(rank)+1, :username, 
+                               select :name, :email, coalesce(max(rank)+1, 1), :username, 
                                :phone, :password from player");
 
     // Execute the query
@@ -26,7 +26,7 @@
       echo "
         <script type='text/javascript'>
           alert('Requested username is already taken.');
-          window.location.assign('index.html');
+          window.location.assign('../join.html');
         </script>
         ";
     }
@@ -39,7 +39,7 @@
       session_start();
       $_SESSION["username"] = $_POST["uname"];
       $_SESSION["name"] = $_POST["name"];
-      header('Location: welcome.php');
+      header('Location: ../welcome.php');
     }
   }
   catch (PDOException $e) {
