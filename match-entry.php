@@ -27,6 +27,14 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
     <meta http-equiv="Pragma" content="no-cache"/>
     <meta http-equiv="Expires" content="-1"/>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    
+    <style>
+      textarea 
+      {
+        width: 100%;
+      }
+    </style>
   
     <title>
       Match Results Entry
@@ -144,38 +152,39 @@
   </head>
 
   <body>
-    <h1 align='center'>Match Result Entry</h1>
-    <p><hr></p>
-    
-    <h2>Enter the scores of each game played into the table:</h2>
-    <form name='match-results-form' id='match-results-form' action='insertGames.php' method='post' onSubmit="return validateForm();">
-      <table id='match-results-table' border='1' width='22.2%'>
-        <tr><th align='center'></th><th align='center'>My Score</th><th align='center'><?php echo $opp_name . "'s Score" ?></th></tr>
-        <tr><th align='center'>Game 1</th>
-          <td align='center'><input type='text' id='me-game-1' name='me-game-1' onChange="validateGame(this, document.getElementById('opp-game-1'));" required></td>
-          <td align='center'><input type='text' id='opp-game-1' name='opp-game-1' onChange="validateGame(document.getElementById('me-game-1'), this);" required></td>
-        </tr>
-        <tr><th align='center'>Game 2</th>
-          <td align='center'><input type='text' id='me-game-2' name='me-game-2' onChange="validateScore(this); validateGame(this, document.getElementById('opp-game-2'));" required></td>
-          <td align='center'><input type='text' id='opp-game-2' name='opp-game-2' onChange="validateScore(this); validateGame(document.getElementById('me-game-2'), this);" required></td>
-        </tr>
-        <tr><th align='center'>Game 3</th>
-          <td align='center'><input type='text' id='me-game-3' name='me-game-3' onChange="validateScore(this); validateGame(this, document.getElementById('opp-game-3'));" required></td>
-          <td align='center'><input type='text' id='opp-game-3' name='opp-game-3' onChange="validateScore(this); validateGame(document.getElementById('me-game-3'), this);" required></td>
-        </tr>
-        <tr><th align='center'>Game 4</th>
-          <td align='center'><input type='text' id='me-game-4' name='me-game-4' onChange="validateScore(this) validateGame(this, document.getElementById('opp-game-4'));"></td>
-          <td align='center'><input type='text' id='opp-game-4' name='opp-game-4' onChange="validateScore(this); validateGame(document.getElementById('me-game-4'), this);"></td>
-        </tr>
-        <tr><th align='center'>Game 5</th>
-          <td align='center'><input type='text' id='me-game-5' name='me-game-5' onChange="validateScore(this); validateGame(this, document.getElementById('opp-game-5'));"></td>
-          <td align='center'><input type='text' id='opp-game-5' name='opp-game-5' onChange="validateScore(this); validateGame(document.getElementById('me-game-5'), this);"></td>
-        </tr>
-      </table><br>
-      <input type='submit' value='Submit'>
-    </form>
-    <input type='button' value='Cancel' onclick='window.location.assign("welcome.php");'>
-    
+    <div class="w3-container">
+      <h1 align='center'>Match Result Entry</h1>
+      <p><hr></p>
+      
+      <h2>Enter the scores of each game played into the table:</h2>
+      <form name='match-results-form' id='match-results-form' action='insertGames.php' method='post' onSubmit="return validateForm();">
+        <table class="w3-table-all" id='match-results-table' border='1' width='22.2%'>
+          <tr><th align='center'></th><th align='center'>My Score</th><th align='center'><?php echo htmlspecialchars($opp_name) . "'s Score" ?></th></tr>
+          <tr><th align='center'>Game 1</th>
+            <td align='center'><input class="w3-input w3-border" type='text' id='me-game-1' name='me-game-1' onChange="validateGame(this, document.getElementById('opp-game-1'));" required></td>
+            <td align='center'><input class="w3-input w3-border" type='text' id='opp-game-1' name='opp-game-1' onChange="validateGame(document.getElementById('me-game-1'), this);" required></td>
+          </tr>
+          <tr><th align='center'>Game 2</th>
+            <td align='center'><input class="w3-input w3-border" type='text' id='me-game-2' name='me-game-2' onChange="validateScore(this); validateGame(this, document.getElementById('opp-game-2'));" required></td>
+            <td align='center'><input class="w3-input w3-border" type='text' id='opp-game-2' name='opp-game-2' onChange="validateScore(this); validateGame(document.getElementById('me-game-2'), this);" required></td>
+          </tr>
+          <tr><th align='center'>Game 3</th>
+            <td align='center'><input class="w3-input w3-border" type='text' id='me-game-3' name='me-game-3' onChange="validateScore(this); validateGame(this, document.getElementById('opp-game-3'));" required></td>
+            <td align='center'><input class="w3-input w3-border" type='text' id='opp-game-3' name='opp-game-3' onChange="validateScore(this); validateGame(document.getElementById('me-game-3'), this);" required></td>
+          </tr>
+          <tr><th align='center'>Game 4</th>
+            <td align='center'><input class="w3-input w3-border" type='text' id='me-game-4' name='me-game-4' onChange="validateScore(this) validateGame(this, document.getElementById('opp-game-4'));"></td>
+            <td align='center'><input class="w3-input w3-border" type='text' id='opp-game-4' name='opp-game-4' onChange="validateScore(this); validateGame(document.getElementById('me-game-4'), this);"></td>
+          </tr>
+          <tr><th align='center'>Game 5</th>
+            <td align='center'><input class="w3-input w3-border" type='text' id='me-game-5' name='me-game-5' onChange="validateScore(this); validateGame(this, document.getElementById('opp-game-5'));"></td>
+            <td align='center'><input class="w3-input w3-border" type='text' id='opp-game-5' name='opp-game-5' onChange="validateScore(this); validateGame(document.getElementById('me-game-5'), this);"></td>
+          </tr>
+        </table><br>
+        <input type='submit' value='Submit'>
+      </form>
+      <input type='button' value='Cancel' onclick='window.location.assign("welcome.php");'>
+    </div>
   </body>
 
 </html>

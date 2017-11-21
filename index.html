@@ -2,61 +2,63 @@
 
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    
     <title>
       Jordan's Ladder Home Page
     </title>
   </head>
   
   <body>
-    <h1 align=center>Ladder Homepage</h1>
-    <p><hr></p>
-    <h2>Ladder Description</h2>
+    <div class="w3-container">
+      <h1 align=center>Ladder Homepage</h1>
+      <p><hr></p>
+      <h2>Ladder Description</h2>
 
-    <p>
-    Welcome to Jordan's ladder! The ladder is an online ranking system for the
-    game of racquetball, where anyone can join by providing a username, email 
-    address, and password. Each participant has a unique rank, representing her 
-    or his overall standing in the game relative to the other players. 
-    </p>
+      <p>
+      Welcome to Jordan's ladder! The ladder is an online ranking system for the
+      game of racquetball, where anyone can join by providing a username, email 
+      address, and password. Each participant has a unique rank, representing her 
+      or his overall standing in the game relative to the other players. 
+      </p>
 
-    <p>
-    Having rank 1 means being at the top of
-    the ladder. You can challenge other players who are within three positions
-    above you on the ladder to attempt to beat one of them in a head-to-head
-    competition, and a recipient must accept your challenge before you can
-    compete. Only players who are not already participating in an accepted
-    challenge are available for being challenged. The winner of the match is 
-    whoever wins the best three out of five games, each of which must be won by
-    reaching a score of 15 and leading by at least 2 points. In the case that
-    a player scores 15 points but is not leading by 2, the first player to have
-    2 points more than the other will win the game.
-    </p>
+      <p>
+      Having rank 1 means being at the top of
+      the ladder. You can challenge other players who are within three positions
+      above you on the ladder to attempt to beat one of them in a head-to-head
+      competition, and a recipient must accept your challenge before you can
+      compete. Only players who are not already participating in an accepted
+      challenge are available for being challenged. The winner of the match is 
+      whoever wins the best three out of five games, each of which must be won by
+      reaching a score of 15 and leading by at least 2 points. In the case that
+      a player scores 15 points but is not leading by 2, the first player to have
+      2 points more than the other will win the game.
+      </p>
 
-    <p>
-    If the lower ranked player wins the match, that person will take the
-    higher-ranked player's position on the ladder, and the loser will move
-    down one rank. All players who were between them will also move down one
-    rank, although this will not interfere with any previously scheduled 
-    matches. If the higher-ranked player wins the match, the ladder
-    will remain unchanged. 
-    </p>
+      <p>
+      If the lower ranked player wins the match, that person will take the
+      higher-ranked player's position on the ladder, and the loser will move
+      down one rank. All players who were between them will also move down one
+      rank, although this will not interfere with any previously scheduled 
+      matches. If the higher-ranked player wins the match, the ladder
+      will remain unchanged. 
+      </p>
 
-    <p><hr></p>
-    <h2>Sign-in</h2>
-    <form name="sign_in_form" id="sign_in_form" action="https://csis314-jjones.bitnamiapp.com/secure/login.php" method="post">
-      Username:<br>
-      <input type="text" name="username" id="username" required>
-      <br><br>
-      Password:<br>
-      <input type="password" name="pswd" id="pswd" required>
-      <br><br>
-      <input type="submit" value="Submit">
-    </form>
+      <p><hr></p>
+      <h2>Sign-in</h2>
+      <form name="sign_in_form" id="sign_in_form" action="https://csis314-jjones.bitnamiapp.com/secure/login.php" method="post">
+        Username:<br>
+        <input type="text" name="username" id="username" required>
+        <br><br>
+        Password:<br>
+        <input type="password" name="pswd" id="pswd" required>
+        <br><br>
+        <input type="submit" value="Submit">
+      </form>
 
-    <p><hr></p>
-    <h2>Not on the ladder yet? <a href="join.html">Join here!</a></h2>
-    
+      <p><hr></p>
+      <h2>Not on the ladder yet? <a href="join.html">Join here!</a></h2>
+    </div>
   </body>
   
 </html>

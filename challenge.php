@@ -18,6 +18,7 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
     <meta http-equiv="Pragma" content="no-cache"/>
     <meta http-equiv="Expires" content="-1"/>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   
     <title>
       Issue Challenge
@@ -61,20 +62,21 @@
   </head>
   
   <body>
-    <h1 align='center'>Issue a Challenge</h1>
-    <p><hr></p>
-    
-    <h3>Enter the date and time this match will take place if accepted:</h3>
-    <form name='issue-challenge-form' id='issue-challenge-form' action='createChallenge.php' method='post' onSubmit="return validateForm();">
-      Date (yyyy/mm/dd):<br>
-      <input type='text' name='date' id='date' onChange='validateDate();' required><br><br>
-      Time (hour:minute in 24-hour format):<br>
-      <input type='text' name='time' id='time' onchange='validateTime();' required><br><br>
-      <input type='submit' value='Submit'> 
-    </form>
-    
-    <input type='button' value='Cancel' onclick='window.location.assign("welcome.php");'>
-    
+    <div class="w3-container">
+      <h1 align='center'>Issue a Challenge</h1>
+      <p><hr></p>
+      
+      <h3>Enter the date and time this match will take place if accepted:</h3>
+      <form name='issue-challenge-form' id='issue-challenge-form' action='createChallenge.php' method='post' onSubmit="return validateForm();">
+        Date (yyyy/mm/dd):<br>
+        <input type='text' name='date' id='date' onChange='validateDate();' required><br><br>
+        Time (hour:minute in 24-hour format):<br>
+        <input type='text' name='time' id='time' onchange='validateTime();' required><br><br>
+        <input type='submit' value='Submit'> 
+      </form>
+      
+      <input type='button' value='Cancel' onclick='window.location.assign("welcome.php");'>
+    </div>
   </body>
   
 </html>

@@ -26,7 +26,7 @@
       echo "
         <script type='text/javascript'>
           alert('Requested username is already taken.');
-          window.location.assign('../join.html');
+          window.location.assign('http://csis314-jjones.bitnamiapp.com/join.html');
         </script>
         ";
     }
@@ -39,7 +39,7 @@
       session_start();
       $_SESSION["username"] = $_POST["uname"];
       $_SESSION["name"] = $_POST["name"];
-      header('Location: ../welcome.php');
+      header('Location: http://csis314-jjones.bitnamiapp.com/welcome.php');
     }
   }
   catch (PDOException $e) {

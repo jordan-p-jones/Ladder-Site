@@ -2,6 +2,7 @@
 
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   
     <title>Ladder - Join</title>
     <script>
@@ -60,25 +61,26 @@
   </head>
 
   <body>
-    <h1 align=center>Register to join the ladder</h1>
-    <p><hr></p>
-    <h3>Please fill out all fields:</h3>
-    <form name="registration_form" id="registration_form" action="https://csis314-jjones.bitnamiapp.com/secure/register.php" method="post" onsubmit="return validateForm();">
-      Your name:<br>
-      <input type="text" name="name" id="name" required><br><br>
-      Email:<br>
-      <input type="email" name="email" id="email" onChange="validateEmail();" required><br><br>
-      Phone number (include area code):<br>
-      <input type="text" name="tele" id="tele" maxlength="14" onChange="validateTele(this);" required><br><br>
-      Username:<br>
-      <input type="text" name="uname" id="uname" required><br><br>
-      Password:<br>
-      <input type="password" name="pwd1" id="pwd1" required><br><br>
-      Please confirm your password:<br>
-      <input type="password" name="pwd2" id="pwd2" onChange="matchPasswords(this);" required><br><br>
-      <input type="submit" value="Submit">
-    </form>
-
+    <div class="w3-container">
+      <h1 align=center>Register to join the ladder</h1>
+      <p><hr></p>
+      <h3>Please fill out all fields:</h3>
+      <form name="registration_form" id="registration_form" action="https://csis314-jjones.bitnamiapp.com/secure/register.php" method="post" onsubmit="return validateForm();">
+        Your name:<br>
+        <input type="text" name="name" id="name" required><br><br>
+        Email:<br>
+        <input type="email" name="email" id="email" onChange="validateEmail();" required><br><br>
+        Phone number (include area code):<br>
+        <input type="text" name="tele" id="tele" maxlength="14" onChange="validateTele(this);" required><br><br>
+        Username:<br>
+        <input type="text" name="uname" id="uname" required><br><br>
+        Password:<br>
+        <input type="password" name="pwd1" id="pwd1" required><br><br>
+        Please confirm your password:<br>
+        <input type="password" name="pwd2" id="pwd2" onChange="matchPasswords(this);" required><br><br>
+        <input type="submit" value="Submit">
+      </form>
+    <div class="w3-container">
   </body>
 
 </html>

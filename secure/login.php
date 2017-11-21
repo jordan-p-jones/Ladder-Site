@@ -32,18 +32,18 @@
             var reactivate = confirm('This account has previously been deactivated. Would you like to re-join the ladder with this account?');
             if (reactivate)
             {
-              window.location.assign('../reactivate.php');
+              window.location.assign('http://csis314-jjones.bitnamiapp.com/reactivate.php');
             }
             else
             {
-              window.location.assign('../index.html');
+              window.location.assign('http://csis314-jjones.bitnamiapp.com/index.html');
             }
           </script>";
       }
       // Login normally.
       else
       {
-        header('Location: ../welcome.php');
+        header('Location: http://csis314-jjones.bitnamiapp.com/welcome.php');
       }
     }
   }
@@ -54,7 +54,7 @@
     echo "
       <script type='text/javascript'>
         alert('Username and password combination is incorrect.');
-        window.location.assign('../index.html');
+        window.location.assign('http://csis314-jjones.bitnamiapp.com/index.html');
       </script>";
   }
 
