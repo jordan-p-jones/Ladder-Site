@@ -48,7 +48,8 @@
       
       <h2>Current Ladder Standings</h2><br>
       <table class="w3-table-all w3-centered" id='ladder-table' border='1' width='55%'>
-        <tr><th align='center'>Rank</th><th align='center'>Player</th><th align='center'>Challenge Status</th></tr>
+        <tr><th align='center'>Rank</th><th align='center'>Player</th><th align='center'>Challenge Status</th>
+          <th align='center'>Match Win Rate</th><th align='center'>Game Win Rate</th><th align='center'>Average Win Margin</th><th align='center'>Average Loss Margin</th></tr>
         
         <?php
           // Get the players who can be challenged by the user.
@@ -66,7 +67,31 @@
           $challengees = $statement->fetchAll();
 
           // Get the players and their ranks and make a table row for each one.
-          $result = $db->query("select rank, name, username from active_player order by rank asc");
+          $result = $db->query("select p.rank, p.name, p.username,
+                                        coalesce( (select cast(count(*) as float(2)) from match_view as m
+                                          where m.winner = p.username)
+                                        /
+                                        (select cast(count(*) as float(2)) from match_view as m
+                                          where m.winner = p.username or m.loser = p.username), 0.0)
+                                      as match_win_pct,
+                                        coalesce( (select cast(count(*) as float(2)) from game as g
+                                          where g.winner = p.username)
+                                        /
+                                        (select cast(count(*) as float(2)) from game as g
+                                          where g.winner = p.username or g.loser = p.username), 0.0)
+                                      as game_win_pct,
+                                        coalesce( (select avg(winner_score - loser_score) from game as g
+                                          where p.username=g.winner), 0.0) as avg_win_margin,
+                                        coalesce( (select avg(winner_score - loser_score) from game as g
+                                          where p.username=g.loser), 0.0)  as avg_lose_margin
+                                  from active_player as p
+                                  where exists (select * from match_view as m where p.username = m.winner or
+                                    p.username=m.loser)
+                                  union
+                                  Select rank, name, username, 0.0, 0.0, 0.0, 0.0 from active_player
+                                  where not exists (select * from match_view where username = winner or
+                                    username = loser)
+                                  Order by rank asc;");
           $players = $result->fetchAll();
           foreach($players as $player)
           {
@@ -144,7 +169,12 @@
                 } // else
               } // else
             } // if
-            echo "</tr>";
+          
+            // Display stats and finish the row.
+            echo "<td align='center'>" . number_format($player['match_win_pct']*100) . "%</td>
+                  <td align='center'>" . number_format($player['game_win_pct']*100) . "%</td>
+                  <td align='center'>" . number_format($player['avg_win_margin'], 2) . "</td>
+                  <td align='center'>" . number_format($player['avg_lose_margin'], 2) . "</td></tr>";
           }
         ?>
         
@@ -152,32 +182,31 @@
       
       <p><hr><p>
       <h2>Recent Match Results</h2>
-        <?php
-          $statement = $db->prepare("Select * from challenge where accepted is not null and (challenger = :username or challengee = :username)");
-          $statement->execute(array(':username'=>$_SESSION['username']));
+      <?php
+        $statement = $db->prepare("Select * from challenge where accepted is not null and (challenger = :username or challengee = :username)");
+        $statement->execute(array(':username'=>$_SESSION['username']));
+        
+        // Conditionally display the match results entry link.
+        if ($statement->rowCount() == 1)
+        {
+          // Find who the other player is.
+          $results = $statement->fetchAll();
+          $opponent = $results[0]['challenger'];
           
-          // Conditionally display the match results entry link.
-          if ($statement->rowCount() == 1)
+          if ($opponent == $_SESSION['username'])
           {
-            // Find who the other player is.
-            $results = $statement->fetchAll();
-            $opponent = $results[0]['challenger'];
-            
-            if ($opponent == $_SESSION['username'])
-            {
-              $opponent = $results[0]['challengee'];
-            }
-            
-            // Get the real name of the opponent.
-            $statement = $db->prepare("select name from active_player where username = :username");
-            $statement->execute(array(':username'=>$opponent));
-            $opp_name = $statement->fetchColumn(0);
-            
-            echo "<h3>Finished your match against " . htmlspecialchars($opp_name) . "? <a href='match-entry.php'>Enter the results here.</a></h3>";
+            $opponent = $results[0]['challengee'];
           }
-        ?>
+          
+          // Get the real name of the opponent.
+          $statement = $db->prepare("select name from active_player where username = :username");
+          $statement->execute(array(':username'=>$opponent));
+          $opp_name = $statement->fetchColumn(0);
+          
+          echo "<h3>Finished your match against " . htmlspecialchars($opp_name) . "? <a href='match-entry.php'>Enter the results here.</a></h3>";
+        }
+      ?>
       
-
       <?php
         // Get recent match results and display each one as a paragraph.
         $match_results = $db->query("Select p1.name as match_winner, p2.name as match_loser, won, lost from
@@ -197,54 +226,7 @@
           echo "<p>" . $row['match_winner'] . " won a match against " . $row['match_loser'] . " by " . $win_dif . $end;
         }
       ?>
-        
-      <p><hr><p>
-      <h2>Player Statistics</h2>
-      <div class="w3-margin-bottom">
-        <table class="w3-table-all w3-centered" id='stats-table' border='1' width='45%'>
-          <tr><th align='center'>Player</th><th align='center'>Match Win Rate</th><th align='center'>Game Win Rate</th><th align='center'>Average Win Margin</th><th align='center'>Average Loss Margin</th></tr>
-          <?php
-            // Get player statistics
-            $statement = $db->query("select p.name,
-                                        coalesce( (select cast(count(*) as float(2)) from match_view as m
-                                          where m.winner = p.username)
-                                        /
-                                        (select cast(count(*) as float(2)) from match_view as m
-                                          where m.winner = p.username or m.loser = p.username), 0.0)
-                                      as match_win_pct,
-                                        coalesce( (select cast(count(*) as float(2)) from game as g
-                                          where g.winner = p.username)
-                                        /
-                                        (select cast(count(*) as float(2)) from game as g
-                                          where g.winner = p.username or g.loser = p.username), 0.0)
-                                      as game_win_pct,
-                                        coalesce( (select avg(winner_score - loser_score) from game as g
-                                          where p.username=g.winner), 0.0) as avg_win_margin,
-                                        coalesce( (select avg(winner_score - loser_score) from game as g
-                                          where p.username=g.loser), 0.0)  as avg_lose_margin
-                                  from active_player as p
-                                  where exists (select * from match_view as m where p.username = m.winner or
-                                    p.username=m.loser)
-                                  union
-                                  select name, 0.0, 0.0, 0.0, 0.0 from active_player
-                                  where not exists (select * from match_view where username = winner or
-                                    username = loser);");
-            
-              $stats = $statement->fetchAll();
-
-              // Print a table row for each player's stats.
-              foreach($stats as $row)
-              {
-                echo "<tr><td align='center'>" . htmlspecialchars($row['name']) . "</td>
-                      <td align='center'>" . number_format($row['match_win_pct']*100) . "%</td>
-                      <td align='center'>" . number_format($row['game_win_pct']*100) . "%</td>
-                      <td align='center'>" . number_format($row['avg_win_margin'], 2) . "</td>
-                      <td align='center'>" . number_format($row['avg_lose_margin'], 2) . "</td></tr>";
-              }
-
-          ?>
-        </table>
-      </div>
+      
     </div>
   </body>
 
