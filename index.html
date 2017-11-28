@@ -45,16 +45,19 @@
       </p>
 
       <p><hr></p>
-      <h2>Sign-in</h2>
-      <form name="sign_in_form" id="sign_in_form" action="https://csis314-jjones.bitnamiapp.com/secure/login.php" method="post">
-        Username:<br>
-        <input type="text" name="username" id="username" required>
-        <br><br>
-        Password:<br>
-        <input type="password" name="pswd" id="pswd" required>
-        <br><br>
-        <input type="submit" value="Submit">
-      </form>
+      <div class="w3-card-1" style="width:22%">
+        <h2>Sign-in</h2>
+        <form  name="sign_in_form" id="sign_in_form" action="https://csis314-jjones.bitnamiapp.com/secure/login.php" method="post">
+          <p>
+          <label class="w3-text-blue-grey"><b>Username</b></label>
+          <input class="w3-input w3-border w3-light-grey" name="username" id="username" type="text" required></p>
+          <p>
+          <label class="w3-text-blue-grey"><b>Password</b></label>
+          <input class="w3-input w3-border w3-light-grey" name="pswd" type="password" required></p>
+          <p>
+          <button class="w3-btn w3-blue-grey">Submit</button></p>
+        </form>
+      </div>
 
       <p><hr></p>
       <h2>Not on the ladder yet? <a href="join.html">Join here!</a></h2>

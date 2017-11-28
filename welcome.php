@@ -37,10 +37,11 @@
     <div class="w3-container">
       <div style="text-align: right; position: absolute; right: 1cm; margin-top: 0.5cm; width: 175px; height: 175px; padding: 20px; border: 1px solid blue; box-sizing: border-box; background-color: white;">
         <?php        
-          echo '<span id="username">Hello, ' . htmlspecialchars($_SESSION["name"]) . '.</span><br><br>';
+          echo '<span id="username">Hello, ' . htmlspecialchars($_SESSION["name"]) . '.</span>';
         ?>
-      <input type="submit" value="Log out" onclick="window.location.assign('logout.php');"><br><br>
-      <input type="submit" value="Leave ladder" onclick="confirmLeave();">
+        <p>
+        <button class="w3-btn w3-blue" onclick="window.location.assign('logout.php');">Log out</button></p>
+        <button class="w3-btn w3-blue" onclick="confirmLeave();">Leave ladder</button>
       </div>
     
       <h1 align=center>Welcome Back to the Ladder</h1>
@@ -103,9 +104,9 @@
             {
               if ($player['name'] == $challengee['challengee'])
               {
-                echo "<td align='center'>Available - <input type='submit' value='Challenge' form='" . $player['name'] . "'></td>
-                <form id='" . $player['name'] . "' action='challenge.php' method='post'>
-                  <input type='text' name='challengee' id='challengee' value='" . $player['name'] . "' hidden>
+                echo "<td align='center'>Available - <button class='w3-btn w3-round-large w3-border w3-amber' form='" . htmlspecialchars($player['name']) . "'>Challenge</button></td>
+                <form id='" . htmlspecialchars($player['name']) . "' action='challenge.php' method='post'>
+                  <input type='text' name='challengee' id='challengee' value='" . htmlspecialchars($player['name']) . "' hidden>
                 </form>";
                 $available = true;
               }
@@ -135,15 +136,15 @@
                   foreach($results as $row)
                   {
                     echo "Challenged you to a match taking place at " . $row['scheduled'] . " - 
-                      <input type='submit' value='Accept' form='" . $row['challenger'] . $row['scheduled'] . "' formaction='acceptChallenge.php'> 
-                      <input type='submit' value='Reject' form='" . $row['challenger'] . $row['scheduled'] . "'></br>";
+                      <button class='w3-btn w3-round-large w3-border w3-green' form='" . htmlspecialchars($row['challenger']) . $row['scheduled'] . "' formaction='acceptChallenge.php'>Accept</button> 
+                      <button class='w3-btn w3-round-large w3-border w3-red' form='" . htmlspecialchars($row['challenger']) . $row['scheduled'] . "'>Reject</button></br>";
                   }
                   echo "</td>";
                   // Create the forms outside of the table data.
                   foreach($results as $row)
                   {
-                    echo "<form id='" . $row['challenger'] . $row['scheduled'] . "' action='rejectChallenge.php' method='post'>
-                      <input type='text' name='challenger' id='challenger' value='" . $row['challenger'] . "' hidden>
+                    echo "<form id='" . htmlspecialchars($row['challenger']) . $row['scheduled'] . "' action='rejectChallenge.php' method='post'>
+                      <input type='text' name='challenger' id='challenger' value='" . htmlspecialchars($row['challenger']) . "' hidden>
                       <input type='text' name='scheduled' id='scheduled' value = '" . $row['scheduled'] . "' hidden>
                     </form>";
                   }
@@ -223,7 +224,7 @@
           {
             $end = " game!</p>";
           }
-          echo "<p>" . $row['match_winner'] . " won a match against " . $row['match_loser'] . " by " . $win_dif . $end;
+          echo "<p>" . htmlspecialchars($row['match_winner']) . " won a match against " . htmlspecialchars($row['match_loser']) . " by " . $win_dif . $end;
         }
       ?>
       

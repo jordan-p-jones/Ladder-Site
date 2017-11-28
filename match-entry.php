@@ -121,6 +121,12 @@
           alert("Inconsistent data for game 5.");
           return false;
         }
+        else if (document.getElementById('me-game-4').value == '' && document.getElementById('opp-game-4').value == ''
+              && document.getElementById('me-game-5').value != '' && document.getElementById('opp-game-5').value != '')
+        {
+          alert("You reported scores for game 5, but not for game 4. Please correct this inconsistency and submit again.");
+          return false;
+        }
         else
         {
           // See if either player has won more than 3 matches, which is not allowed.
@@ -129,11 +135,11 @@
           
           for (var i = 1; i < 6; i++)
           {
-            if (document.getElementById('me-game-' + String(i)) > document.getElementById('opp-game-' + String(i)))
+            if (document.getElementById('me-game-' + String(i)).value > document.getElementById('opp-game-' + String(i)).value)
             {
               p1Wins++;
             }
-            else if (document.getElementById('me-game-' + String(i)) < document.getElementById('opp-game-' + String(i)))
+            else if (document.getElementById('me-game-' + String(i)).value < document.getElementById('opp-game-' + String(i)).value)
             {
               p2Wins++;
             }
@@ -156,7 +162,7 @@
       <h1 align='center'>Match Result Entry</h1>
       <p><hr></p>
       
-      <h2>Enter the scores of each game played into the table:</h2>
+      <h3>Enter the scores of each game played into the table:</h3>
       <form name='match-results-form' id='match-results-form' action='insertGames.php' method='post' onSubmit="return validateForm();">
         <table class="w3-table-all" id='match-results-table' border='1' width='22.2%'>
           <tr><th align='center'></th><th align='center'>My Score</th><th align='center'><?php echo htmlspecialchars($opp_name) . "'s Score" ?></th></tr>
@@ -181,9 +187,9 @@
             <td align='center'><input class="w3-input w3-border" type='text' id='opp-game-5' name='opp-game-5' onChange="validateScore(this); validateGame(document.getElementById('me-game-5'), this);"></td>
           </tr>
         </table><br>
-        <input type='submit' value='Submit'>
+        <button class="w3-btn w3-blue-grey">Submit</button></p>
       </form>
-      <input type='button' value='Cancel' onclick='window.location.assign("welcome.php");'>
+      <button class="w3-btn w3-blue-grey" onclick='window.location.assign("welcome.php");'>Cancel</button>
     </div>
   </body>
 

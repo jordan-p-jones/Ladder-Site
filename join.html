@@ -64,22 +64,33 @@
     <div class="w3-container">
       <h1 align=center>Register to join the ladder</h1>
       <p><hr></p>
-      <h3>Please fill out all fields:</h3>
-      <form name="registration_form" id="registration_form" action="https://csis314-jjones.bitnamiapp.com/secure/register.php" method="post" onsubmit="return validateForm();">
-        Your name:<br>
-        <input type="text" name="name" id="name" required><br><br>
-        Email:<br>
-        <input type="email" name="email" id="email" onChange="validateEmail();" required><br><br>
-        Phone number (include area code):<br>
-        <input type="text" name="tele" id="tele" maxlength="14" onChange="validateTele(this);" required><br><br>
-        Username:<br>
-        <input type="text" name="uname" id="uname" required><br><br>
-        Password:<br>
-        <input type="password" name="pwd1" id="pwd1" required><br><br>
-        Please confirm your password:<br>
-        <input type="password" name="pwd2" id="pwd2" onChange="matchPasswords(this);" required><br><br>
-        <input type="submit" value="Submit">
-      </form>
+      <div class="w3-card-1" style="width:25%">
+        <div class="w3-container">
+          <h3>Please fill out all fields:</h3>
+        </div>
+        <form class="w3-container" name="registration_form" id="registration_form" action="https://csis314-jjones.bitnamiapp.com/secure/register.php" method="post" onsubmit="return validateForm();">
+          <p>
+          <label class="w3-text-blue-grey"><b>Your name</b></label>
+          <input class="w3-input w3-border w3-light-grey" type="text" name="name" id="name" required></p>
+          <p>
+          <label class="w3-text-blue-grey"><b>Email</b></label>
+          <input class="w3-input w3-border w3-light-grey" type="email" name="email" id="email" onChange="validateEmail();" required></p>
+          <p>
+          <label class="w3-text-blue-grey"><b>Phone number (include area code)</b></label>
+          <input class="w3-input w3-border w3-light-grey" type="text" name="tele" id="tele" maxlength="14" onChange="validateTele(this);" required></p>
+          <p>
+          <label class="w3-text-blue-grey"><b>Username</b></label>
+          <input class="w3-input w3-border w3-light-grey" type="text" name="uname" id="uname" required></p>
+          <p>
+          <label class="w3-text-blue-grey"><b>Password</b></label>
+          <input class="w3-input w3-border w3-light-grey" type="password" name="pwd1" id="pwd1" required></p>
+          <p>
+          <label class="w3-text-blue-grey"><b>Please confirm your password</b></label>
+          <input class="w3-input w3-border w3-light-grey" type="password" name="pwd2" id="pwd2" onChange="matchPasswords(this);" required></p>
+          <p>
+          <button class="w3-btn w3-blue-grey">Submit</button></p>
+        </form>
+      </div>
     <div class="w3-container">
   </body>
 

@@ -65,17 +65,24 @@
     <div class="w3-container">
       <h1 align='center'>Issue a Challenge</h1>
       <p><hr></p>
-      
-      <h3>Enter the date and time this match will take place if accepted:</h3>
-      <form name='issue-challenge-form' id='issue-challenge-form' action='createChallenge.php' method='post' onSubmit="return validateForm();">
-        Date (yyyy/mm/dd):<br>
-        <input type='text' name='date' id='date' onChange='validateDate();' required><br><br>
-        Time (hour:minute in 24-hour format):<br>
-        <input type='text' name='time' id='time' onchange='validateTime();' required><br><br>
-        <input type='submit' value='Submit'> 
-      </form>
-      
-      <input type='button' value='Cancel' onclick='window.location.assign("welcome.php");'>
+      <div class="w3-card-1" style="width:25%">
+        <div class="w3-container">
+          <h3>Enter the date and time this match will take place if accepted:</h3>
+        </div>
+        <form class="w3-container" name='issue-challenge-form' id='issue-challenge-form' action='createChallenge.php' method='post' onSubmit="return validateForm();">
+          <p>
+          <label class="w3-text-blue-grey"><b>Date (yyyy/mm/dd)</b></label>
+          <input class="w3-input w3-border w3-light-grey" type='text' name='date' id='date' onChange='validateDate();' required></p>
+          <p>
+          <label class="w3-text-blue-grey"><b>Time (hour:minute in 24-hour format)</b></label>
+          <input class="w3-input w3-border w3-light-grey" type='text' name='time' id='time' onchange='validateTime();' required></p>
+          <p>
+          <button class="w3-btn w3-blue-grey">Submit</button></p>
+        </form>
+        <div class="w3-container">
+          <button class="w3-btn w3-blue-grey" onclick='window.location.assign("welcome.php");'>Cancel</button>
+        </div>
+      </div>
     </div>
   </body>
   
