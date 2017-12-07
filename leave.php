@@ -26,7 +26,7 @@
       $set_rank->execute(array(':player'=>$player['username'], ':rank'=>$player['rank']-1));
     }
 
-    // Remove rows all challenges that contain the session's username. (temporary solution)
+    // Remove all challenges that contain the session's username.
     $statement = $db->prepare("delete from challenge where challenger = :username or challengee = :username");
     $statement->execute(array(':username'=>$_SESSION['username']));
     $db->commit();
